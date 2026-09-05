@@ -1,20 +1,20 @@
 # Multimeter Measurements
 
-## What I did
+## What I Did
 
 * Learned how to use a multimeter using the EEVblog as a reference.
 * Measured and verified the resistance values of different resistors.
-* Used an Arduino Uno to control an SG90 and measured the DC current it drew under different conditions.
+* Used an Arduino Uno to control an SG90 servo and measured the DC current it drew under different conditions.
 * Measured the terminal voltage of a 4×AA battery pack.
-* Compared the measured stall current of the SG90 and MG90S with the quoted values in my notes.
+* Compared the measured stall currents of the SG90 and MG90S with the quoted values in my notes.
 
 ## Servo Motor Setup
 
-The servos were controlled using an Arduino Uno. The signal wire of the servo was connected to **digital pin 9**, while the servo was powered from a separate 4×AA battery pack.
+The servos were controlled using an Arduino Uno. The servo signal wire was connected to **digital pin 9**, while the servo was powered from a separate 4×AA battery pack.
 
-The battery positive terminal was connected to the multimeter, with the multimeter connected **in series** with the servo's power supply so that the current flowing through the servo could be measured.
+The positive battery terminal was connected to the multimeter. The multimeter was connected **in series** with the servo power supply so that the current flowing through the servo could be measured.
 
-The battery negative terminal was connected to the servo ground and the Arduino ground, giving the Arduino and servo a common ground.
+The negative battery terminal was connected to both the servo ground and the Arduino ground, giving the Arduino and servo a common ground.
 
 The multimeter was connected to the **10 A current jack** for the higher-current measurements.
 
@@ -22,27 +22,27 @@ The multimeter was connected to the **10 A current jack** for the higher-current
 
 The battery pack consisted of four AA batteries connected in series.
 
-For measuring voltage, the multimeter was switched to DC voltage mode and connected **in parallel** across the battery pack:
+To measure voltage, the multimeter was set to DC voltage mode and connected **in parallel** across the battery pack:
 
-* Red probe → battery positive
-* Black probe → battery negative
+* Red probe → battery positive terminal
+* Black probe → battery negative terminal
 
-The pack measured **6.2 V** with no load.
+The battery pack measured **6.2 V** with no load.
 
-During the stall test, the multimeter was kept across the battery terminals to measure the voltage while the servo was drawing current. The terminal voltage dropped to approximately **5.9 V**.
+During the stall test, the multimeter remained connected across the battery terminals to measure the voltage while the servo was drawing current. The terminal voltage dropped to approximately **5.9 V**.
 
 ## Measurements
 
-| Test                               |    Value | Conditions                          |
-| ---------------------------------- | -------: | ----------------------------------- |
-| SG90 no-load, sweeping 0–180°      |    25 mA | 10 A jack                           |
-| SG90 no-load, stationary           | 12–14 mA | Servo stationary                    |
-| SG90 holding                       |    30 mA | Eraser placed on arm                |
-| SG90 stall                         |  ~650 mA | Horn held, less than 2 s, 10 A jack |
-| MG90S stall                        |  ~600 mA | Same method                         |
-| Battery pack, open circuit         |    6.2 V | 4×AA in series                      |
-| Battery pack, terminal under stall |    5.9 V | During SG90 stall                   |
-| Source resistance                  |  ~0.46 Ω | Derived from 0.3 V ÷ 0.65 A         |
+| Test                                        |                Value | Conditions                                   |
+| ------------------------------------------- | -------------------: | -------------------------------------------- |
+| SG90 no-load sweep from 0° to 180°          |                25 mA | 10 A jack                                    |
+| SG90 no-load, stationary                    |             12–14 mA | Servo stationary                             |
+| SG90 holding a load                         |                30 mA | Eraser placed on the arm                     |
+| SG90 stall                                  | Approximately 650 mA | Horn held for less than 2 seconds; 10 A jack |
+| MG90S stall                                 | Approximately 600 mA | Same method                                  |
+| Battery pack, open circuit                  |                6.2 V | Four AA batteries in series                  |
+| Battery pack, terminal voltage during stall |                5.9 V | During SG90 stall                            |
+| Source resistance                           | Approximately 0.46 Ω | Calculated from 0.3 V ÷ 0.65 A               |
 
 ## Observation
 
@@ -50,7 +50,7 @@ The main thing I noticed from the servo tests was that the current is closely re
 
 The eraser produced a relatively small opposing torque, so the servo could maintain its position with only about **30 mA**. When the horn was physically blocked, the servo could not reach the commanded position, producing a much larger position error. The current increased to approximately **650 mA**.
 
-This also explains why simply saying that current increases with the applied load is incomplete. A load matters because it can cause the servo to develop a position error. A stalled servo has a very large persistent position error, which is why the current is much higher.
+This also explains why simply saying that current increases with the applied load is incomplete. A load matters because it can cause the servo to develop a position error. A stalled servo has a large, persistent position error, which is why the current is much higher.
 
 ## Battery Observation
 
@@ -58,24 +58,24 @@ The battery pack measured **6.2 V** with no load and approximately **5.9 V** whi
 
 The voltage drop was therefore:
 
-$$
-6.2 - 5.9 = 0.3\text{ V}
-$$
+[
+6.2\ \text{V} - 5.9\ \text{V} = 0.3\ \text{V}
+]
 
 Using the measured stall current of approximately **0.65 A**, the effective source resistance was estimated as:
 
-$$
-R = \frac{0.3}{0.65}
-$$
+[
+R = \frac{0.3\ \text{V}}{0.65\ \text{A}}
+]
 
-$$
+[
 R \approx 0.46\ \Omega
-$$
+]
 
 ## Conclusion
 
-This gave me a practical understanding of how a multimeter can be used to measure resistance, voltage, and current, and why the meter has to be connected differently depending on what is being measured.
+This experiment gave me a practical understanding of how a multimeter can be used to measure resistance, voltage, and current. It also showed why the meter must be connected differently depending on what is being measured.
 
-The servo measurements also showed a clear difference between normal operation, holding a load, and a true stall. The SG90 drew about **30 mA** while holding the eraser but approximately **650 mA** when its horn was blocked.
+The servo measurements showed a clear difference between normal operation, holding a load, and a true stall. The SG90 drew about **30 mA** while holding the eraser but approximately **650 mA** when its horn was blocked.
 
-The measured SG90 stall current also fell within the **500–700 mA** range noted as its quoted stall current.
+The measured SG90 stall current also fell within the quoted **500–700 mA** range noted in my records.
