@@ -58,19 +58,21 @@ The battery pack measured **6.2 V** with no load and approximately **5.9 V** whi
 
 The voltage drop was therefore:
 
-[
-6.2\ \text{V} - 5.9\ \text{V} = 0.3\ \text{V}
-]
+The voltage drop was therefore:
+
+```text
+6.2 V - 5.9 V = 0.3 V
+```
 
 Using the measured stall current of approximately **0.65 A**, the effective source resistance was estimated as:
 
-[
-R = \frac{0.3\ \text{V}}{0.65\ \text{A}}
-]
+```text
+R = 0.3 V / 0.65 A
+```
 
-[
-R \approx 0.46\ \Omega
-]
+```text
+R ≈ 0.46 Ω
+```
 
 ## Conclusion
 
