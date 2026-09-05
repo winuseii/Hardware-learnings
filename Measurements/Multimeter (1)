@@ -1,4 +1,58 @@
--> learned how to work a multimeter (using the EVV blog)
--> measured and verified different resistances of resistors that i have.
--> measured the values for current (DC) of a servo motor (SG90) when it has no load, when it is holding a load, and when it does held down and stalled.
--> realisezed SG90 is a lot stronger than it looks considering it is that small ._.
+# Multimeter Measurements and Servo Testing
+
+## What I Learned
+
+* Learned how to use a multimeter, using the EVV blog as a reference.
+* Measured and verified the resistance values of different resistors.
+* Measured the DC current drawn by an SG90 servo motor under different conditions:
+
+  * No load: **25 mA**
+  * Holding a load (eraser placed on the lever arm): **30 mA**
+  * Stalled: **30–40 mA**
+* Measured the voltage of a battery pack made from four AA batteries. The theoretical voltage is approximately **6 V**, while the measured voltage was **6.2 V**.
+* Also realized that the SG90 is considerably stronger than its size suggests.
+
+## Servo Motor Connection
+
+The SG90 was connected to an Arduino Uno for control and measurement.
+
+* **SG90 signal wire → Arduino digital pin 9**
+* **SG90 VCC → positive terminal of the battery pack through the multimeter**
+* **SG90 GND → negative terminal of the battery pack**
+* **Arduino GND → battery pack negative terminal**
+
+The multimeter was connected **in series with the servo's power supply** and set to DC current mode. This allowed the current drawn by the servo to be measured under no-load, holding, and stall conditions.
+
+The Arduino was used to control the position of the servo using the `Servo` library.
+
+## Battery Pack Connection
+
+The battery pack consisted of **four AA batteries connected in series**.
+
+For measuring the battery voltage, the multimeter was switched to DC voltage mode and connected **in parallel across the battery pack**:
+
+* Red probe → positive terminal of the battery pack
+* Black probe → negative terminal of the battery pack
+
+The theoretical voltage was:
+
+**4 × 1.5 V = 6 V**
+
+The measured voltage was:
+
+**6.2 V**
+
+The slightly higher reading is expected from fresh AA batteries, as their actual open-circuit voltage can be higher than the nominal 1.5 V per cell.
+
+## Results
+
+| Test                        | Measured Value |
+| --------------------------- | -------------: |
+| SG90 current — No load      |          25 mA |
+| SG90 current — Holding load |          30 mA |
+| SG90 current — Stall        |       30–40 mA |
+| 4 × AA battery pack         |          6.2 V |
+
+## Key Takeaway
+
+This exercise helped me understand the basic use of a multimeter for measuring resistance, DC current, and voltage, as well as the difference between connecting a meter in series for current measurements and in parallel for voltage measurements.
