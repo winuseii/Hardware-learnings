@@ -1,9 +1,5 @@
 # M01 — Servo Current Characterisation
 
-> **Measured SG90 stall current: approximately 650 mA.**
-
-**Mission:** Servo Current Characterisation
-
 ---
 
 ## What I was trying to find out
